@@ -39,7 +39,6 @@ import click.nullpointer.carsearch.ebay.EbaySearcherConfig;
 import click.nullpointer.carsearch.model.AbstractCarListing;
 import click.nullpointer.carsearch.model.ICarSearcher;
 import click.nullpointer.carsearch.model.ISearcherConfiguration;
-import click.nullpointer.carsearch.model.images.ListingImageTracker;
 import click.nullpointer.carsearch.motorscouk.MotorsCoUkConfig;
 import click.nullpointer.carsearch.motorscouk.MotorsCoUkSearcher;
 import click.nullpointer.carsearch.rac.RACConfig;
