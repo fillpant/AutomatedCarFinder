@@ -13,7 +13,10 @@ public class MainSearcherConfig {
 	private int stopSearchingAtHour = 1;
 	private int startSearchingAtHour = 7;
 	private String simpleWebPageViewFile = "./cars.html";
+	private boolean keepKnownListingsBetweenRestarts = true;
+	private String knownListingsCacheFile = "./last_known_listings.json";
 	private int notificationsPerMinuteLimit = 120;
+	private int maximumSearchRepeatAttempts = 2;
 
 	public int getSleepBetweenRequests() {
 		return sleepBetweenRequests;
@@ -43,8 +46,20 @@ public class MainSearcherConfig {
 		return new File(simpleWebPageViewFile);
 	}
 
+	public boolean isKeepKnownListingsBetweenRestarts() {
+		return keepKnownListingsBetweenRestarts;
+	}
+
+	public File getKnownListingsCacheFile() {
+		return new File(knownListingsCacheFile);
+	}
+
 	public int getNotificationsPerMinute() {
 		return notificationsPerMinuteLimit;
+	}
+
+	public int getMaximumSearchRepeatAttempts() {
+		return maximumSearchRepeatAttempts;
 	}
 
 }

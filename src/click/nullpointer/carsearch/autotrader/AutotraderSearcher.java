@@ -7,17 +7,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 
 import com.google.gson.Gson;
@@ -25,8 +18,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import click.nullpointer.carsearch.Main;
-import click.nullpointer.carsearch.autotrader.AutotraderSearchListings;
 import click.nullpointer.carsearch.model.AbstractCarListing;
 import click.nullpointer.carsearch.model.ICarSearcher;
 

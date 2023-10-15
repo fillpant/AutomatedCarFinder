@@ -7,8 +7,8 @@ public class RACConfig implements ISearcherConfiguration {
 	private int maxAge;
 	private int maxPrice;
 	private String referencePostcode;
-
-	public RACConfig(int maxAge, int maxPrice, String referencePostcode) {
+	private long sleepBetweenRequests;
+	public RACConfig(int maxAge, int maxPrice, String referencePostcode, long sleepBetweenRequests) {
 		this.maxAge = maxAge;
 		this.maxPrice = maxPrice;
 		this.referencePostcode = referencePostcode;
@@ -26,6 +26,10 @@ public class RACConfig implements ISearcherConfiguration {
 		return referencePostcode;
 	}
 
+	public long getSleepBetweenRequests() {
+		return sleepBetweenRequests;
+	}
+	
 	@Override
 	public int getConfigVersion() {
 		return 0;

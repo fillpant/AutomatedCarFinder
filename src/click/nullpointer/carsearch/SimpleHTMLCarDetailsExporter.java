@@ -1,6 +1,7 @@
 package click.nullpointer.carsearch;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,11 +13,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.commons.io.IOUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 import click.nullpointer.carsearch.model.AbstractCarListing;
 import click.nullpointer.carsearch.model.ICarSearcher;
+import click.nullpointer.carsearch.model.ListingDetail;
 
 public class SimpleHTMLCarDetailsExporter {
 
@@ -31,7 +37,7 @@ public class SimpleHTMLCarDetailsExporter {
 			}
 		}));
 		AtomicInteger incrementalCounter = new AtomicInteger();
-		Gson g = new Gson();
+		Gson g = new GsonBuilder().registerTypeAdapter(ListingDetail.class, new DetailSerialiser()).create();
 		JsonObject root = new JsonObject();
 		root.addProperty("totalListingCount", lsts.size());
 		JsonArray arr = new JsonArray();
@@ -42,11 +48,13 @@ public class SimpleHTMLCarDetailsExporter {
 			JsonArray listings = new JsonArray();
 			e.getValue().stream().map(a -> {
 				JsonObject o = new JsonObject();
+				o.addProperty("firstSeen", a.getFirstSeen());
 				o.addProperty("autoScrollImages", false);// for now. For some listings we may want this true.
 				o.addProperty("price", a.getPrice());
 				o.addProperty("priceString", String.format("%,.2f", a.getPrice()));
 				o.addProperty("shortDescription", a.toNotificationText());
 				o.addProperty("listingUrl", a.getListingURL());
+				o.add("details", g.toJsonTree(a.getDetails()));
 				JsonArray images = new JsonArray();
 				for (String s : a.getPictureURLs())
 					images.add(s);
@@ -126,5 +134,15 @@ public class SimpleHTMLCarDetailsExporter {
 //		//@formatter:on
 //
 //	}
+	private static class DetailSerialiser implements JsonSerializer<ListingDetail<?>> {
 
+		private static final Gson GSON = new Gson();
+
+		@Override
+		public JsonElement serialize(ListingDetail<?> src, Type typeOfSrc, JsonSerializationContext context) {
+			JsonObject obj = GSON.toJsonTree(src).getAsJsonObject();
+			obj.addProperty("formattedValue", src.getFormattedValue());
+			return obj;
+		}
+	}
 }

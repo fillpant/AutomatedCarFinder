@@ -1,0 +1,1358 @@
+[
+    {
+        "data": {
+            "searchResults": {
+                "listings": [
+                    {
+                        "type": "NATURAL_LISTING",
+                        "advertId": "202309111829523",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 GS Auto 4WD Euro 5 (s/s) 5dr",
+                        "attentionGrabber": null,
+                        "price": "£13,000",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": null,
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "49",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/26639254713f40f5a43deb21166665c5.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/a4c9fa52613e4c438ef1fdf94d5cdc50.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/dd40eb658b7f4f4286500304f6fb7191.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/f3d3120c449641e499e225635db5a187.jpg"
+                        ],
+                        "location": "Llanrhystud",
+                        "numberOfImages": 7,
+                        "priceIndicatorRating": "NOANALYSIS",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "PRIVATE",
+                        "sellerName": null,
+                        "dealerLogo": null,
+                        "dealerLink": null,
+                        "dealerReview": null,
+                        "fpaLink": "/car-details/202309111829523?sort=relevance",
+                        "hasVideo": false,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "87,600 miles",
+                        "yearAndPlateText": "2014 (14 reg)",
+                        "specs": [
+                            "2014 (14 reg)",
+                            "SUV",
+                            "87,600 miles",
+                            "3.0L",
+                            "259PS",
+                            "Automatic",
+                            "Diesel",
+                            "3 owners",
+                            "Part service history"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "PRIVATE_SELLER",
+                                "displayText": "Private seller",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": null,
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "null",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202309111829523",
+                                "advertiserId": null,
+                                "advertiserType": "PRIVATE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 13000,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "NATURAL_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 7,
+                                "hasFinance": true,
+                                "priceIndicator": "NOANALYSIS",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 49,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "NATURAL_LISTING",
+                        "advertId": "202308301345958",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 HSE Auto 4WD Euro 5 (s/s) 5dr",
+                        "attentionGrabber": "*great spec* best colour combo",
+                        "price": "£14,595",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": null,
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "82",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/c0e31e0797a5453d894ee857cf3b484a.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/d95e28d7358f40c3a8aea2c1d32fa9da.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/24b2815f26ec4a2180b97f574d039f0c.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/cb23c84b7fa84dc2a0b4d85b25e537af.jpg"
+                        ],
+                        "location": "Kidderminster",
+                        "numberOfImages": 24,
+                        "priceIndicatorRating": "NOANALYSIS",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "PRIVATE",
+                        "sellerName": null,
+                        "dealerLogo": null,
+                        "dealerLink": null,
+                        "dealerReview": null,
+                        "fpaLink": "/car-details/202308301345958?sort=relevance",
+                        "hasVideo": false,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "134,500 miles",
+                        "yearAndPlateText": "2014 (64 reg)",
+                        "specs": [
+                            "2014 (64 reg)",
+                            "SUV",
+                            "134,500 miles",
+                            "3.0L",
+                            "259PS",
+                            "Automatic",
+                            "Diesel",
+                            "3 owners"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "PRIVATE_SELLER",
+                                "displayText": "Private seller",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": null,
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "null",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202308301345958",
+                                "advertiserId": null,
+                                "advertiserType": "PRIVATE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 14595,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "NATURAL_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 24,
+                                "hasFinance": false,
+                                "priceIndicator": "NOANALYSIS",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 82,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "NATURAL_LISTING",
+                        "advertId": "202310122916574",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 Graphite Auto 4WD Euro 6 (s/s) 5dr",
+                        "attentionGrabber": null,
+                        "price": "£15,890",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": null,
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "172",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/945762a80de34e3a87b1e887a6dc9b4a.jpg"
+                        ],
+                        "location": "Haywards Heath",
+                        "numberOfImages": 1,
+                        "priceIndicatorRating": "NOANALYSIS",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "PRIVATE",
+                        "sellerName": null,
+                        "dealerLogo": null,
+                        "dealerLink": null,
+                        "dealerReview": null,
+                        "fpaLink": "/car-details/202310122916574?sort=relevance",
+                        "hasVideo": false,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "107,000 miles",
+                        "yearAndPlateText": "2016 (16 reg)",
+                        "specs": [
+                            "2016 (16 reg)",
+                            "SUV",
+                            "107,000 miles",
+                            "3.0L",
+                            "260PS",
+                            "Automatic",
+                            "Diesel",
+                            "4 owners",
+                            "Full service history"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "PRIVATE_SELLER",
+                                "displayText": "Private seller",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": null,
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "null",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202310122916574",
+                                "advertiserId": null,
+                                "advertiserType": "PRIVATE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 15890,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "NATURAL_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 1,
+                                "hasFinance": true,
+                                "priceIndicator": "NOANALYSIS",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 172,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "GPT_LISTING",
+                        "targetingSegments": [
+                            {
+                                "name": "sr",
+                                "values": [
+                                    "SUV100"
+                                ],
+                                "__typename": "TargetingSegment"
+                            },
+                            {
+                                "name": "make",
+                                "values": [
+                                    "landrover"
+                                ],
+                                "__typename": "TargetingSegment"
+                            },
+                            {
+                                "name": "max_price",
+                                "values": [
+                                    "16000"
+                                ],
+                                "__typename": "TargetingSegment"
+                            },
+                            {
+                                "name": "min_age",
+                                "values": [
+                                    "2014"
+                                ],
+                                "__typename": "TargetingSegment"
+                            },
+                            {
+                                "name": "model",
+                                "values": [
+                                    "discovery4"
+                                ],
+                                "__typename": "TargetingSegment"
+                            },
+                            {
+                                "name": "location_area",
+                                "values": [
+                                    "swansea"
+                                ],
+                                "__typename": "TargetingSegment"
+                            },
+                            {
+                                "name": "loc_one",
+                                "values": [
+                                    "sa11"
+                                ],
+                                "__typename": "TargetingSegment"
+                            }
+                        ],
+                        "posId": "desktop-search-4",
+                        "__typename": "GPTListing"
+                    },
+                    {
+                        "type": "NATURAL_LISTING",
+                        "advertId": "202309212207893",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 HSE Auto 4WD Euro 5 (s/s) 5dr",
+                        "attentionGrabber": "IMMACULATE THROUGHOUT",
+                        "price": "£14,000",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": "See all 33 cars",
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "129",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/32eb6089579641fd84c09c94487aeaf3.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/17cc6fea28a04843b03d96b3b57e44da.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/f68e536f520944be9b589170e1bdac53.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/aea1677c184048f9a1178ff80d553df4.jpg"
+                        ],
+                        "location": "Derby",
+                        "numberOfImages": 20,
+                        "priceIndicatorRating": "GREAT",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "TRADE",
+                        "sellerName": "Derby Vehicles Ltd",
+                        "dealerLogo": "https://dealerlogo.atcdn.co.uk/at2/adbranding/10011761/images/searchlogo.gif",
+                        "dealerLink": "/dealers/derbyshire/derby/derby-vehicles-ltd-10011761?channel=cars",
+                        "dealerReview": {
+                            "overallReviewRating": 4.8,
+                            "numberOfReviews": 96,
+                            "dealerProfilePageLink": "/dealers/derbyshire/derby/derby-vehicles-ltd-10011761?channel=cars#reviews",
+                            "__typename": "BasicListingDealerReview"
+                        },
+                        "fpaLink": "/car-details/202309212207893?sort=relevance",
+                        "hasVideo": false,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "134,252 miles",
+                        "yearAndPlateText": "2014 (64 reg)",
+                        "specs": [
+                            "2014 (64 reg)",
+                            "SUV",
+                            "134,252 miles",
+                            "3.0L",
+                            "259PS",
+                            "Automatic",
+                            "Diesel",
+                            "2 owners",
+                            "Full service history"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "PI_GREAT",
+                                "displayText": "Great price",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": "10011761",
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "10011761",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202309212207893",
+                                "advertiserId": "10011761",
+                                "advertiserType": "TRADE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 14000,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "NATURAL_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 20,
+                                "hasFinance": true,
+                                "priceIndicator": "GREAT",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 129,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "NATURAL_LISTING",
+                        "advertId": "202310042654931",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 XS Auto 4WD Euro 5 (s/s) 5dr",
+                        "attentionGrabber": "SATNAV, LEATHER, HEATED SEATS!",
+                        "price": "£11,989",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": "See all 8 cars",
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "130",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/c716ee03f7c04004a7c547ae039bb1c3.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/f08582bf25e54731818d4d383c8961a9.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/83356db9b8724b46b6869ad955ab3b92.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/67faa2f43daf417e9fea6a22727b67aa.jpg"
+                        ],
+                        "location": "Fareham",
+                        "numberOfImages": 10,
+                        "priceIndicatorRating": "LOW",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "TRADE",
+                        "sellerName": "Pines",
+                        "dealerLogo": "https://dealerlogo.atcdn.co.uk/at2/adbranding/2106/images/searchlogo.gif",
+                        "dealerLink": "/dealers/hants/fareham/pines-2106?channel=cars",
+                        "dealerReview": {
+                            "overallReviewRating": 4.7,
+                            "numberOfReviews": 21,
+                            "dealerProfilePageLink": "/dealers/hants/fareham/pines-2106?channel=cars#reviews",
+                            "__typename": "BasicListingDealerReview"
+                        },
+                        "fpaLink": "/car-details/202310042654931?sort=relevance",
+                        "hasVideo": false,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "138,000 miles",
+                        "yearAndPlateText": "2014 (14 reg)",
+                        "specs": [
+                            "2014 (14 reg)",
+                            "SUV",
+                            "138,000 miles",
+                            "3.0L",
+                            "255BHP",
+                            "Automatic",
+                            "Diesel",
+                            "3 owners"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "PI_LOW",
+                                "displayText": "Lower price",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": "2106",
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "2106",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202310042654931",
+                                "advertiserId": "2106",
+                                "advertiserType": "TRADE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 11989,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "NATURAL_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 10,
+                                "hasFinance": true,
+                                "priceIndicator": "LOW",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 130,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "NATURAL_LISTING",
+                        "advertId": "202310062743483",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 SE Auto 4WD Euro 6 (s/s) 5dr",
+                        "attentionGrabber": "ULEZ 7 Seats Finance Available",
+                        "price": "£14,000",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": "See all 129 cars",
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "144",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/985944edb2044e45857d264396b4ee4b.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/9830f563bac846e6ba6a1d19abd50770.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/de30f9e8f9b84cc38751c3191b9d5f71.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/bc3d5dfa4bd2453eb3f1594876d5d7e6.jpg"
+                        ],
+                        "location": "Leighton Buzzard",
+                        "numberOfImages": 34,
+                        "priceIndicatorRating": "FAIR",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "TRADE",
+                        "sellerName": "Praters",
+                        "dealerLogo": "https://dealerlogo.atcdn.co.uk/at2/adbranding/10003215/images/searchlogo.gif",
+                        "dealerLink": "/dealers/bedfordshire/leighton-buzzard/praters-10003215?channel=cars",
+                        "dealerReview": {
+                            "overallReviewRating": 4.8,
+                            "numberOfReviews": 330,
+                            "dealerProfilePageLink": "/dealers/bedfordshire/leighton-buzzard/praters-10003215?channel=cars#reviews",
+                            "__typename": "BasicListingDealerReview"
+                        },
+                        "fpaLink": "/car-details/202310062743483?sort=relevance",
+                        "hasVideo": true,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "129,300 miles",
+                        "yearAndPlateText": "2015 (65 reg)",
+                        "specs": [
+                            "2015 (65 reg)",
+                            "SUV",
+                            "129,300 miles",
+                            "3.0L",
+                            "255BHP",
+                            "Automatic",
+                            "Diesel",
+                            "2 owners"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "PI_FAIR",
+                                "displayText": "Fair price",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": "10003215",
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "10003215",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202310062743483",
+                                "advertiserId": "10003215",
+                                "advertiserType": "TRADE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 14000,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "NATURAL_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 34,
+                                "hasFinance": true,
+                                "priceIndicator": "FAIR",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 144,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "NATURAL_LISTING",
+                        "advertId": "202304226546731",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 HSE Auto 4WD Euro 5 (s/s) 5dr",
+                        "attentionGrabber": "4 month warranty &11 month MOT",
+                        "price": "£14,995",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": null,
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "93",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/47504346ee464a05a9ca363901083dd3.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/82513a0614dd448c8efc4431dd475a6b.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/3f4a5c77449b49a58a3bd95daed537de.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/1e7116d4eeff4334aa4a63f62593dcc7.jpg"
+                        ],
+                        "location": "Swindon",
+                        "numberOfImages": 32,
+                        "priceIndicatorRating": "NOANALYSIS",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "PRIVATE",
+                        "sellerName": null,
+                        "dealerLogo": null,
+                        "dealerLink": null,
+                        "dealerReview": null,
+                        "fpaLink": "/car-details/202304226546731?sort=relevance",
+                        "hasVideo": false,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "125,065 miles",
+                        "yearAndPlateText": "2014 (14 reg)",
+                        "specs": [
+                            "2014 (14 reg)",
+                            "SUV",
+                            "125,065 miles",
+                            "3.0L",
+                            "259PS",
+                            "Automatic",
+                            "Diesel",
+                            "Full service history"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "PRIVATE_SELLER",
+                                "displayText": "Private seller",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": null,
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "null",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202304226546731",
+                                "advertiserId": null,
+                                "advertiserType": "PRIVATE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 14995,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "NATURAL_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 32,
+                                "hasFinance": true,
+                                "priceIndicator": "NOANALYSIS",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 93,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "NATURAL_LISTING",
+                        "advertId": "202308231126545",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 HSE Auto 4WD Euro 5 (s/s) 5dr",
+                        "attentionGrabber": "7 seater full leather",
+                        "price": "£16,000",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": "See all 14 cars",
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "156",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/d74c2924d00045edbe10f4bae4d22d03.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/1a8a1d1d989c41bb82ea664ee1d8fcdc.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/99246c7474024cbe9d9d756b2eda6d06.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/9a801dc91ef946e5b92a0eeb4d3efc83.jpg"
+                        ],
+                        "location": "London",
+                        "numberOfImages": 47,
+                        "priceIndicatorRating": "LOW",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "TRADE",
+                        "sellerName": "Loma Autos",
+                        "dealerLogo": "https://dealerlogo.atcdn.co.uk/at2/adbranding/10002608/images/searchlogo.gif",
+                        "dealerLink": "/dealers/middlesex/london/loma-autos-10002608?channel=cars",
+                        "dealerReview": {
+                            "overallReviewRating": 4.8,
+                            "numberOfReviews": 43,
+                            "dealerProfilePageLink": "/dealers/middlesex/london/loma-autos-10002608?channel=cars#reviews",
+                            "__typename": "BasicListingDealerReview"
+                        },
+                        "fpaLink": "/car-details/202308231126545?sort=relevance",
+                        "hasVideo": false,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "100,000 miles",
+                        "yearAndPlateText": "2014 (14 reg)",
+                        "specs": [
+                            "2014 (14 reg)",
+                            "SUV",
+                            "100,000 miles",
+                            "3.0L",
+                            "259PS",
+                            "Automatic",
+                            "Diesel",
+                            "Full service history"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "PI_LOW",
+                                "displayText": "Lower price",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": "10002608",
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "10002608",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202308231126545",
+                                "advertiserId": "10002608",
+                                "advertiserType": "TRADE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 16000,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "NATURAL_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 47,
+                                "hasFinance": true,
+                                "priceIndicator": "LOW",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 156,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "NATURAL_LISTING",
+                        "advertId": "202310132960549",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 SE Auto 4WD Euro 5 (s/s) 5dr",
+                        "attentionGrabber": "FLSH & SAT NAV & LEATHER",
+                        "price": "£14,990",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": "See all 37 cars",
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "161",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/9b459081b97445ed92af074816a4c4dd.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/659dc7a8c2844a828131f18319ebc8c4.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/ef588498e15447bc9ad7649594ab1cea.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/5068a191ef1c4800b1edfb84c4f006b7.jpg"
+                        ],
+                        "location": "Sheffield",
+                        "numberOfImages": 4,
+                        "priceIndicatorRating": "GOOD",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "TRADE",
+                        "sellerName": "Arthur Stanley Limited",
+                        "dealerLogo": "https://dealerlogo.atcdn.co.uk/at2/adbranding/10004909/images/searchlogo.gif",
+                        "dealerLink": "/dealers/yorkshire/sheffield/arthur-stanley-limited-10004909?channel=cars",
+                        "dealerReview": {
+                            "overallReviewRating": 4.8,
+                            "numberOfReviews": 133,
+                            "dealerProfilePageLink": "/dealers/yorkshire/sheffield/arthur-stanley-limited-10004909?channel=cars#reviews",
+                            "__typename": "BasicListingDealerReview"
+                        },
+                        "fpaLink": "/car-details/202310132960549?sort=relevance",
+                        "hasVideo": false,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "99,989 miles",
+                        "yearAndPlateText": "2014 (64 reg)",
+                        "specs": [
+                            "2014 (64 reg)",
+                            "SUV",
+                            "99,989 miles",
+                            "3.0L",
+                            "259PS",
+                            "Automatic",
+                            "Diesel",
+                            "2 owners"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "PI_GOOD",
+                                "displayText": "Good price",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": "10004909",
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "10004909",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202310132960549",
+                                "advertiserId": "10004909",
+                                "advertiserType": "TRADE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 14990,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "NATURAL_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 4,
+                                "hasFinance": true,
+                                "priceIndicator": "GOOD",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 161,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "NATURAL_LISTING",
+                        "advertId": "202308090600168",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 HSE Auto 4WD Euro 5 (s/s) 5dr",
+                        "attentionGrabber": ">>> 24 MONTH WARRANTY <<<",
+                        "price": "£15,890",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": "See all 19 cars",
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "143",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/de6cbaa243834707909f04a13bb3bd1d.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/f355c7d6839341f3bc020a5782f6ded7.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/9c0d26ed15f84409aab816bd2b50cf6a.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/cc41966653e84ef5a5b45637b2632fe0.jpg"
+                        ],
+                        "location": "Chesham",
+                        "numberOfImages": 76,
+                        "priceIndicatorRating": "FAIR",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "TRADE",
+                        "sellerName": "HMC",
+                        "dealerLogo": "https://dealerlogo.atcdn.co.uk/at2/adbranding/10008036/images/searchlogo.gif",
+                        "dealerLink": "/dealers/buckinghamshire/chesham/hmc-10008036?channel=cars",
+                        "dealerReview": {
+                            "overallReviewRating": 4.9,
+                            "numberOfReviews": 685,
+                            "dealerProfilePageLink": "/dealers/buckinghamshire/chesham/hmc-10008036?channel=cars#reviews",
+                            "__typename": "BasicListingDealerReview"
+                        },
+                        "fpaLink": "/car-details/202308090600168?sort=relevance",
+                        "hasVideo": false,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": true,
+                        "mileageText": "130,611 miles",
+                        "yearAndPlateText": "2014 (14 reg)",
+                        "specs": [
+                            "2014 (14 reg)",
+                            "SUV",
+                            "130,611 miles",
+                            "3.0L",
+                            "259PS",
+                            "Automatic",
+                            "Diesel",
+                            "1 owner",
+                            "Full service history"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "PI_FAIR",
+                                "displayText": "Fair price",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": "10008036",
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "10008036",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202308090600168",
+                                "advertiserId": "10008036",
+                                "advertiserType": "TRADE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 15890,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "NATURAL_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 76,
+                                "hasFinance": true,
+                                "priceIndicator": "FAIR",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 143,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "PROMOTED_LISTING",
+                        "advertId": "202308231126545",
+                        "title": "Land Rover Discovery 4",
+                        "subTitle": "3.0 SD V6 HSE Auto 4WD Euro 5 (s/s) 5dr",
+                        "attentionGrabber": "7 seater full leather",
+                        "price": "£16,000",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": "See all 14 cars",
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": null,
+                        "distance": "156",
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/d74c2924d00045edbe10f4bae4d22d03.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/1a8a1d1d989c41bb82ea664ee1d8fcdc.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/99246c7474024cbe9d9d756b2eda6d06.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/9a801dc91ef946e5b92a0eeb4d3efc83.jpg"
+                        ],
+                        "location": "London",
+                        "numberOfImages": 47,
+                        "priceIndicatorRating": "LOW",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "TRADE",
+                        "sellerName": "Loma Autos",
+                        "dealerLogo": "https://dealerlogo.atcdn.co.uk/at2/adbranding/10002608/images/searchlogo.gif",
+                        "dealerLink": "/dealers/middlesex/london/loma-autos-10002608?channel=cars",
+                        "dealerReview": {
+                            "overallReviewRating": 4.8,
+                            "numberOfReviews": 43,
+                            "dealerProfilePageLink": "/dealers/middlesex/london/loma-autos-10002608?channel=cars#reviews",
+                            "__typename": "BasicListingDealerReview"
+                        },
+                        "fpaLink": "/car-details/202308231126545?journey=PROMOTED_LISTING_JOURNEY&sort=relevance",
+                        "hasVideo": false,
+                        "has360Spin": false,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "100,000 miles",
+                        "yearAndPlateText": "2014 (14 reg)",
+                        "specs": [
+                            "2014 (14 reg)",
+                            "SUV",
+                            "100,000 miles",
+                            "3.0L",
+                            "259PS",
+                            "Automatic",
+                            "Diesel",
+                            "Full service history"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "PI_LOW",
+                                "displayText": "Lower price",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": "10002608",
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "10002608",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202308231126545",
+                                "advertiserId": "10002608",
+                                "advertiserType": "TRADE",
+                                "make": "Land Rover",
+                                "model": "Discovery 4",
+                                "vehicleCategory": "car",
+                                "year": 2013,
+                                "condition": "used",
+                                "price": 16000,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "PROMOTED_LISTING",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 47,
+                                "hasFinance": true,
+                                "priceIndicator": "LOW",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 156,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "YOU_MAY_ALSO_LIKE",
+                        "advertId": "202310042645543",
+                        "title": "Land Rover Discovery Sport",
+                        "subTitle": "2.0 TD4 HSE 4WD Euro 6 (s/s) 5dr",
+                        "attentionGrabber": "PANROOF • SAT NAV",
+                        "price": "£15,977",
+                        "bodyType": "SUV",
+                        "viewRetailerProfileLinkLabel": "See all 521 cars",
+                        "approvedUsedLogo": null,
+                        "nearestCollectionLocation": [
+                            {
+                                "distance": 47,
+                                "town": "Weston-super-mare",
+                                "__typename": "CollectionLocation"
+                            }
+                        ],
+                        "distance": null,
+                        "discount": null,
+                        "description": null,
+                        "images": [
+                            "https://m.atcdn.co.uk/a/media/{resize}/92da275d6e1c4d88a8790aeb433aee1d.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/da9f89a3f18044b3b5152571e667a6d7.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/2acd0cd4781c4fb489f041c4d2442add.jpg",
+                            "https://m.atcdn.co.uk/a/media/{resize}/892d682a522c474daa11a7d5d49c5676.jpg"
+                        ],
+                        "location": null,
+                        "numberOfImages": 34,
+                        "priceIndicatorRating": "FAIR",
+                        "rrp": null,
+                        "manufacturerLogo": null,
+                        "sellerType": "TRADE",
+                        "sellerName": "Carbase.co.uk",
+                        "dealerLogo": "https://dealerlogo.atcdn.co.uk/at2/adbranding/10028432/images/searchlogo.gif",
+                        "dealerLink": "/dealers/carbase-co-uk-10028432?channel=cars",
+                        "dealerReview": {
+                            "overallReviewRating": 4.6,
+                            "numberOfReviews": 15105,
+                            "dealerProfilePageLink": "/dealers/carbase-co-uk-10028432?channel=cars#reviews",
+                            "__typename": "BasicListingDealerReview"
+                        },
+                        "fpaLink": "/car-details/202310042645543?journey=YOU_MAY_ALSO_LIKE_JOURNEY&sort=relevance",
+                        "hasVideo": true,
+                        "has360Spin": true,
+                        "hasDigitalRetailing": false,
+                        "mileageText": "80,183 miles",
+                        "yearAndPlateText": "2016 (16 reg)",
+                        "specs": [
+                            "2016 (16 reg)",
+                            "SUV",
+                            "80,183 miles",
+                            "2.0L",
+                            "180PS",
+                            "Manual",
+                            "Diesel",
+                            "2 owners"
+                        ],
+                        "finance": null,
+                        "badges": [
+                            {
+                                "type": "PI_FAIR",
+                                "displayText": "Fair price",
+                                "__typename": "Badge"
+                            },
+                            {
+                                "type": "FINANCE",
+                                "displayText": "Finance available",
+                                "__typename": "Badge"
+                            }
+                        ],
+                        "sellerId": "10028432",
+                        "trackingContext": {
+                            "retailerContext": {
+                                "id": "10028432",
+                                "__typename": "TrackingRetailerContext"
+                            },
+                            "advertContext": {
+                                "id": "202310042645543",
+                                "advertiserId": "10028432",
+                                "advertiserType": "TRADE",
+                                "make": "Land Rover",
+                                "model": "Discovery Sport",
+                                "vehicleCategory": "car",
+                                "year": 2014,
+                                "condition": "used",
+                                "price": 15977,
+                                "__typename": "TrackingAdvertContext"
+                            },
+                            "card": {
+                                "category": "ADVERT",
+                                "subCategory": "YOU_MAY_ALSO_LIKE",
+                                "__typename": "TrackingCard"
+                            },
+                            "advertCardFeatures": {
+                                "condition": "USED",
+                                "numImages": 34,
+                                "hasFinance": true,
+                                "priceIndicator": "FAIR",
+                                "isManufacturedApproved": false,
+                                "isFranchiseApproved": false,
+                                "__typename": "TrackingAdvertCardFeatures"
+                            },
+                            "distance": {
+                                "distance": 0,
+                                "distance_unit": null,
+                                "__typename": "TrackingDistance"
+                            },
+                            "__typename": "TrackingContext"
+                        },
+                        "__typename": "SearchListing"
+                    },
+                    {
+                        "type": "NEW_CAR_DEALS",
+                        "adverts": [
+                            {
+                                "advertId": "202310042657215",
+                                "title": "Land Rover Range Rover Evoque",
+                                "subTitle": "2.0 D200 MHEV Dynamic SE Auto 4WD Euro 6 (s/s) 5dr",
+                                "rrp": "£54,064",
+                                "price": "£52,500",
+                                "discount": "£1,564",
+                                "mainImage": "https://m.atcdn.co.uk/a/media/{resize}/3d4ac4954bc140999c1118c61452a148.jpg",
+                                "__typename": "NewCarDealAdvert"
+                            },
+                            {
+                                "advertId": "202310042655666",
+                                "title": "Land Rover Range Rover Evoque",
+                                "subTitle": "2.0 D165 MHEV S Auto 4WD Euro 6 (s/s) 5dr",
+                                "rrp": "£44,664",
+                                "price": "£43,000",
+                                "discount": "£1,664",
+                                "mainImage": "https://m.atcdn.co.uk/a/media/{resize}/ad735a2ec3024f72ba1bacb9d1ad0f2d.jpg",
+                                "__typename": "NewCarDealAdvert"
+                            },
+                            {
+                                "advertId": "202310042663386",
+                                "title": "Land Rover Range Rover Evoque",
+                                "subTitle": "1.5 P300e 11.9kWh Dynamic HSE Auto 4WD Euro 6 (s/s) 5dr",
+                                "rrp": "£60,559",
+                                "price": "£59,000",
+                                "discount": "£1,559",
+                                "mainImage": "https://m.atcdn.co.uk/a/media/{resize}/6ae25097ab4f44a88a02d21c9246d212.jpg",
+                                "__typename": "NewCarDealAdvert"
+                            }
+                        ],
+                        "__typename": "NewCarDealListing"
+                    }
+                ],
+                "page": {
+                    "number": 1,
+                    "count": 5,
+                    "results": {
+                        "count": 41,
+                        "__typename": "SearchResultsPageResults"
+                    },
+                    "__typename": "SearchResultsPage"
+                },
+                "searchInfo": {
+                    "isForFinanceSearch": false,
+                    "__typename": "SearchInfo"
+                },
+                "__typename": "SearchResults"
+            }
+        }
+    }
+]

@@ -9,14 +9,17 @@ public class TheAAConfig implements ISearcherConfiguration {
 	private final int ageYears;
 	private final int modelID;
 	private final int makeID;
+	private final long sleepBetweenRequests;
 
-	public TheAAConfig(String referencePostcode, int minPrice, int maxPrice, int ageYears, int modelID, int makeID) {
+	public TheAAConfig(String referencePostcode, int minPrice, int maxPrice, int ageYears, int modelID, int makeID,
+			long sleepBetweenRequests) {
 		this.referencePostcode = referencePostcode;
 		this.minPrice = minPrice;
 		this.maxPrice = maxPrice;
 		this.ageYears = ageYears;
 		this.modelID = modelID;
 		this.makeID = makeID;
+		this.sleepBetweenRequests = sleepBetweenRequests;
 	}
 
 	public String getReferencePostcode() {
@@ -43,6 +46,10 @@ public class TheAAConfig implements ISearcherConfiguration {
 		return makeID;
 	}
 
+	public long getSleepBetweenRequests() {
+		return sleepBetweenRequests;
+	}
+	
 	@Override
 	public int getConfigVersion() {
 		return 0;

@@ -3,13 +3,17 @@ package click.nullpointer.carsearch.ebay;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import click.nullpointer.carsearch.model.AbstractCarListing;
+import click.nullpointer.carsearch.model.ListingDetail;
+import click.nullpointer.carsearch.model.ListingDetail.StandardListingDetails;
 
 public class EbaySearchListing extends AbstractCarListing {
 	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
@@ -60,6 +64,62 @@ public class EbaySearchListing extends AbstractCarListing {
 		this.distance = distance;
 		this.distanceUnit = distanceUnit;
 	}
+
+	@Override
+	public List<ListingDetail<?>> getDetails() {
+		List<ListingDetail<?>> details = new ArrayList<>();
+		String title = this.title;
+		if (containsBadWords(getTitle() + " " + getSubtitle()))
+			title = "⚠️⚠️" + title;
+		details.add(StandardListingDetails.title(title));
+		details.add(StandardListingDetails.subtitle(subtitle));
+		details.add(StandardListingDetails.price(currentPrice));
+		details.add(StandardListingDetails.distance(distance));
+		details.add(StandardListingDetails.location(location + " " + country));
+		if (getCurrentBid().isPresent())
+			details.add(new ListingDetail<>("Bid", getCurrentBid().get(), f -> String.format("%.2f", f), "🔨"));
+		details.add(new ListingDetail<>("eBay Watches", getWatchCount(), f -> f.toString(), "🤓"));
+		Duration durLeft = getTimeLeft();
+		long dh = durLeft.getSeconds() / 3600;
+		long dm = (durLeft.getSeconds() % 3600) / 60;
+		long ds = durLeft.getSeconds() % 60;
+		String left = String.format("%d:%02d:%02d", dh, dm, ds);
+		details.add(new ListingDetail<>("Time Left", left, f -> f, "⌚"));
+		details.add(new ListingDetail<>("End", getEndTime().toString().replace("T", " "), f -> f, "🏁"));
+		details.add(new ListingDetail<>("Type", getListingType(), f -> f, "🧮"));
+		return details;
+	}
+
+//	@Override
+//	public String toNotificationText() {
+//		StringBuilder sb = new StringBuilder();
+//		String title = getTitle();
+//		if (title.length() > 42)
+//			title = title.substring(0, 39) + "...";
+//		if (containsBadWords(getTitle() + " " + getSubtitle()))
+//			title = "⚠️⚠️" + title;
+//		String subtitle = getSubtitle();
+//		if (subtitle.length() > 42)
+//			subtitle = subtitle.substring(0, 39) + "...";
+//
+//		sb.append(title).append('\n');
+//		if (!getSubtitle().trim().isEmpty())
+//			sb.append(subtitle).append('\n');
+//		sb.append("💰 " + String.format("£%,.2f", getCurrentPrice()));
+//		if (getCurrentBid().isPresent())
+//			sb.append(String.format(" (bid: £%,.2f)", getCurrentBid().get()));
+//		sb.append('\n');
+//		sb.append("🤓 " + getWatchCount() + " watches").append('\n');
+//		Duration durLeft = getTimeLeft();
+//		long dh = durLeft.getSeconds() / 3600;
+//		long dm = (durLeft.getSeconds() % 3600) / 60;
+//		long ds = durLeft.getSeconds() % 60;
+//		String left = String.format("%d:%02d:%02d", dh, dm, ds);
+//		sb.append("⌚ " + left).append('\n');
+//		sb.append("🏁 " + getEndTime().toString().replace("T", " ")).append('\n');
+//		sb.append("🧮 Type: " + getListingType());
+//		return sb.toString();
+//	}
 
 	public long getItemId() {
 		return itemId;
@@ -135,37 +195,6 @@ public class EbaySearchListing extends AbstractCarListing {
 
 	public String getDistanceUnit() {
 		return distanceUnit;
-	}
-
-	@Override
-	public String toNotificationText() {
-		StringBuilder sb = new StringBuilder();
-		String title = getTitle();
-		if (title.length() > 42)
-			title = title.substring(0, 39) + "...";
-		if (containsBadWords(getTitle() + " " + getSubtitle()))
-			title = "⚠️⚠️" + title;
-		String subtitle = getSubtitle();
-		if (subtitle.length() > 42)
-			subtitle = subtitle.substring(0, 39) + "...";
-
-		sb.append(title).append('\n');
-		if (!getSubtitle().trim().isEmpty())
-			sb.append(subtitle).append('\n');
-		sb.append("💰 " + String.format("£%,.2f", getCurrentPrice()));
-		if (getCurrentBid().isPresent())
-			sb.append(String.format(" (bid: £%,.2f)", getCurrentBid().get()));
-		sb.append('\n');
-		sb.append("🤓 " + getWatchCount() + " watches").append('\n');
-		Duration durLeft = getTimeLeft();
-		long dh = durLeft.getSeconds() / 3600;
-		long dm = (durLeft.getSeconds() % 3600) / 60;
-		long ds = durLeft.getSeconds() % 60;
-		String left = String.format("%d:%02d:%02d", dh, dm, ds);
-		sb.append("⌚ " + left).append('\n');
-		sb.append("🏁 " + getEndTime().toString().replace("T", " ")).append('\n');
-		sb.append("🧮 Type: " + getListingType());
-		return sb.toString();
 	}
 
 	// Ebay does something funky. Galery images are sized based on the last

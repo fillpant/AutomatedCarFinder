@@ -5,12 +5,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
-import java.security.MessageDigest;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,14 @@ import org.apache.commons.io.FileUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.reflect.TypeToken;
 
 import click.nullpointer.carsearch.autotrader.AutotraderSearcher;
 import click.nullpointer.carsearch.autotrader.AutotraderSearcherConfig;
@@ -48,9 +56,6 @@ import click.nullpointer.carsearch.theaa.TheAASearcher;
 
 public class Main {
 	private static final Gson CONFIG_GSON = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-//	public static final String NOTIFICATION_URL = "https://maker.ifttt.com/trigger/notify/with/key/nZ7AUfIHSFPuvwatJfFdHLCNckGKKlzCPvYpOnAnoOU?value1=%s&value2=%s&value3=%s";
-//	public static final int SLEEP_BETWEEN_REQUESTS_MS = 1000;
-//	private static final int RUN_EVERY_MINS = 67 * 3;// Offset so it's not exactly 6h between searches.
 	private static MainSearcherConfig config;
 	private static ActionRateLimiter rateLimitedNotifications;
 
@@ -82,14 +87,17 @@ public class Main {
 		DEFAULT_CONFIG_MAPPING.put(AutotraderSearcher.class, new AutotraderSearcherConfig("Land Rover", "Discovery 4",
 				2014, 10000, "sa16hw", config.getSleepBetweenRequests()));
 
-		DEFAULT_CONFIG_MAPPING.put(MotorsCoUkSearcher.class,
-				new MotorsCoUkConfig("Land Rover", "Discovery 4", 2014, 2017, 15000, "SA16RA"));
+		DEFAULT_CONFIG_MAPPING.put(MotorsCoUkSearcher.class, new MotorsCoUkConfig("Land Rover", "Discovery 4", 2014,
+				2017, 15000, "SA16RA", config.getSleepBetweenRequests()));
 
-		DEFAULT_CONFIG_MAPPING.put(CarGurusSearcher.class, new CarGurusConfig(2014, 15000, "SA1 6RA"));
+		DEFAULT_CONFIG_MAPPING.put(CarGurusSearcher.class,
+				new CarGurusConfig(2014, 15000, "SA1 6RA", config.getSleepBetweenRequests()));
 
-		DEFAULT_CONFIG_MAPPING.put(TheAASearcher.class, new TheAAConfig("SA16RA", 0, 16000, 9, 102, 121));
+		DEFAULT_CONFIG_MAPPING.put(TheAASearcher.class,
+				new TheAAConfig("SA16RA", 0, 16000, 9, 102, 121, config.getSleepBetweenRequests()));
 
-		DEFAULT_CONFIG_MAPPING.put(RACSearcher.class, new RACConfig(10, 16000, "SA16RA"));
+		DEFAULT_CONFIG_MAPPING.put(RACSearcher.class,
+				new RACConfig(10, 16000, "SA16RA", config.getSleepBetweenRequests()));
 
 		// Load configs for searchers
 		Map<Class<?>, ISearcherConfiguration> configs = loadOrCreateConfigs();
@@ -100,6 +108,14 @@ public class Main {
 			searchers.add(c.newInstance(configs.get(searcher)));
 		}
 		System.out.println(searchers.size() + " searchers enabled.");
+
+		if (config.isKeepKnownListingsBetweenRestarts() && config.getKnownListingsCacheFile().exists()) {
+			try {
+				loadCurrentKnownCars(config.getKnownListingsCacheFile(), searchers);
+			} catch (IOException e) {
+				notifyException("Loading known listings to file", null, e);
+			}
+		}
 
 		ScheduledExecutorService sex = Executors.newScheduledThreadPool(1);
 		sex.scheduleAtFixedRate(() -> {
@@ -112,23 +128,6 @@ public class Main {
 		}, 0, config.getRunEverySeconds(), TimeUnit.MINUTES);
 	}
 
-//	private static Map<String, AbstractCarListing> loadPreviousResults(File file)
-//			throws IOException, ClassNotFoundException {
-//		if (!file.exists())
-//			return Collections.emptyMap();
-//		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-//			return (Map<String, AbstractCarListing>) ois.readObject();
-//		}
-//	}
-//
-//	private static void writePreviousResults(File file, Map<String, AbstractCarListing> val)
-//			throws IOException, ClassNotFoundException {
-//		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-//			oos.writeObject(val);
-//		}
-//	}
-
-	//
 	private static Map<Class<?>, ISearcherConfiguration> loadOrCreateConfigs()
 			throws IOException, ReflectiveOperationException {
 		// Searcher class to searcher config
@@ -164,15 +163,18 @@ public class Main {
 	public static void doFunThings(List<ICarSearcher> searchers) {
 		Map<String, AbstractCarListing> listings = new HashMap<>();
 		for (ICarSearcher s : searchers) {
-			System.out.println(">>>>SEARCH " + s.getPrettySearcherName() + ": ");
-			try {
-				Collection<AbstractCarListing> l = s.searchForListings();
-				System.out.println("\t>>>>" + l.size() + " LISTINGS RECEIVED.");
-				l.forEach(a -> listings.put(s.getClass().toString() + a.getListingUniqueID(), a));
-				l.forEach(a -> a.getPictureURLs());
-			} catch (Exception e) {
-				notifyException("Search", s.getPrettySearcherName(), e);
-				e.printStackTrace();
+			for (int i = 0; i < config.getMaximumSearchRepeatAttempts(); i++) {
+				System.out.println(">>>>SEARCH " + s.getPrettySearcherName() + ": ");
+				try {
+					Collection<AbstractCarListing> l = s.searchForListings();
+					System.out.println("\t>>>>" + l.size() + " LISTINGS RECEIVED.");
+					l.forEach(a -> listings.put(s.getClass().toString() + a.getListingUniqueID(), a));
+					l.forEach(a -> a.getPictureURLs());
+					break;
+				} catch (Exception e) {
+					notifyException("Search", s.getPrettySearcherName(), e);
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -220,20 +222,21 @@ public class Main {
 		if (!soldOrGone.isEmpty())
 			sendNotifications(soldOrGone, NotificationType.LISTING_GONE);
 
+		// Update the firstSeen value of all cars before overriding the results:
+		listings.entrySet().stream().filter(a -> previousResults.containsKey(a.getKey()))
+				.forEach(a -> a.getValue().setFirstSeen(previousResults.get(a.getKey()).getFirstSeen()));
 		previousResults.clear();
 		previousResults.putAll(listings);
 
-	}
+		if (config.isKeepKnownListingsBetweenRestarts()) {
+			try {
+				saveCurrentKnownCars(config.getKnownListingsCacheFile());
+			} catch (IOException e) {
+				notifyException("Saving known listings to file", null, e);
+			}
+		}
 
-//	private static void registerImagesFromListings(Map<String, AbstractCarListing> listings) {
-//		MessageDigest md = MessageDigest.getInstance("MD5");
-//		listings.values().stream().map(a -> {
-//			List<String> imgs = a.getPictureURLs();
-//			List<String> hashes = new ArrayList<>(imgs.size());
-//			imgs.forEach(x -> hashes.put);
-//			return imgs;
-//		});
-//	}
+	}
 
 	private static void sendNotifications(Map<AbstractCarListing, AbstractCarListing> lst, NotificationType type) {
 		try {
@@ -241,20 +244,31 @@ public class Main {
 				String searcher = l.getSearcher().isPresent() ? l.getSearcher().get().getPrettySearcherName()
 						: "Generic searcher";
 				String notifText = l.toNotificationText();
+				String priceChange = null;
 				if (lst.get(l) != null) {
 					if (lst.get(l).getPrice() > l.getPrice())
-						notifText += ("\n📉 " + (lst.get(l).getPrice() - l.getPrice()));
+						priceChange = ("\n📉 " + (lst.get(l).getPrice() - l.getPrice()));
 					else if (lst.get(l).getPrice() < l.getPrice())
-						notifText += ("\n📈 " + (l.getPrice() - lst.get(l).getPrice()));
+						priceChange = ("\n📈 " + (l.getPrice() - lst.get(l).getPrice()));
 				}
+				if (priceChange != null)
+					notifText = priceChange + "\n" + notifText;
 				final String notifTextF = notifText;
 				rateLimitedNotifications.submitAction(() -> {
 					try {
+						l.getDetails().forEach(d -> {
+							try {
+								System.out.println(d);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						});
+						System.out.println();
 						new URL(String.format(config.getNotificationURL(),
 								URLEncoder.encode(searcher + " | " + type.toTitle(), "UTF-8"),
 								URLEncoder.encode(notifTextF, "UTF-8"), URLEncoder.encode(l.getListingURL(), "UTF-8")))
 										.openStream().close();
-						System.out.println(notifTextF + "\n\n");
+//						System.out.println(notifTextF + "\n\n");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -284,6 +298,74 @@ public class Main {
 				ex.printStackTrace();
 			}
 		});
+	}
+
+	private static void saveCurrentKnownCars(File out) throws IOException {
+		Gson ser = new GsonBuilder()
+				.registerTypeHierarchyAdapter(AbstractCarListing.class, new AbstractCarListingSerialiser(null))
+				.setPrettyPrinting().create();
+		FileUtils.write(out, ser.toJson(previousResults), StandardCharsets.UTF_8);
+	}
+
+	private static void loadCurrentKnownCars(File out, Collection<ICarSearcher> searchers) throws IOException {
+		Map<String, ICarSearcher> searcherMap = searchers.stream()
+				.collect(Collectors.toMap(ICarSearcher::getPrettySearcherName, a -> a));
+		Gson dser = new GsonBuilder()
+				.registerTypeAdapter(AbstractCarListing.class, new AbstractCarListingSerialiser(searcherMap)).create();
+		Type type = new TypeToken<Map<String, AbstractCarListing>>() {
+		}.getType();
+		Map<String, AbstractCarListing> lst = dser.fromJson(FileUtils.readFileToString(out, StandardCharsets.UTF_8),
+				type);
+		lst.values().removeIf(a -> a == null);// Get rid of those we didnt de-serialize.
+//		lst.values().removeIf(a -> !searcherMap.containsKey(a.getSearcherName()));
+//		// Link searchers.
+//		lst.values().forEach(a -> a.setSearcher(searcherMap.get(a.getSearcherName())));
+		previousResults.clear();
+		previousResults.putAll(lst);
+	}
+
+	private static class AbstractCarListingSerialiser
+			implements JsonSerializer<AbstractCarListing>, JsonDeserializer<AbstractCarListing> {
+
+		private Gson g = new Gson();
+		private Map<String, ICarSearcher> searcherLookup = new HashMap<>();
+
+		public AbstractCarListingSerialiser(Map<String, ICarSearcher> searcherLookup) {
+			this.searcherLookup = searcherLookup;
+		}
+
+		@Override
+		public JsonElement serialize(AbstractCarListing lst, Type t, JsonSerializationContext ctx) {
+			JsonObject o = g.toJsonTree(lst).getAsJsonObject();
+			o.addProperty("__searcher_name",
+					lst.getSearcher().map(a -> a == null ? "" : a.getPrettySearcherName()).get());
+			o.addProperty("__class", lst.getClass().getName());
+			return o;
+		}
+
+		@Override
+		public AbstractCarListing deserialize(JsonElement lst, Type t, JsonDeserializationContext ctx)
+				throws JsonParseException {
+			JsonObject o = lst.getAsJsonObject();
+			if (!o.has("__searcher_name"))
+				return null;
+			ICarSearcher s = searcherLookup.get(o.get("__searcher_name").getAsString());
+			Class<? extends AbstractCarListing> type;
+			try {
+				type = (Class<? extends AbstractCarListing>) Class.forName(o.get("__class").getAsString());
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				return null;
+			}
+			if (s == null)
+				return null;
+			o.remove("__class");
+			o.remove("__searcher_name");
+			AbstractCarListing l = ctx.deserialize(lst, type);
+			l.setSearcher(s);
+			return l;
+		}
+
 	}
 
 }

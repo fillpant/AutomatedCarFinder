@@ -1,11 +1,11 @@
 package click.nullpointer.carsearch.rac;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,11 +26,13 @@ public class RACSearcher implements ICarSearcher {
 	private int maxAge;
 	private int maxPrice;
 	private String referencePostcode;
+	private long sleepBetweenRequests;
 
 	public RACSearcher(RACConfig c) {
 		this.maxAge = c.getMaxAge();
 		this.maxPrice = c.getMaxPrice();
 		this.referencePostcode = c.getReferencePostcode();
+		this.sleepBetweenRequests = c.getSleepBetweenRequests();
 	}
 
 	@Override
@@ -38,10 +40,17 @@ public class RACSearcher implements ICarSearcher {
 		// TODO ONLY SEARCHES 1 PAGE!!!
 		Map<String, String> headers = new HashMap<>(RequestUtils.STATIC_REQUEST_HEADERS);
 		headers.put("X-Requested-With", "XMLHttpRequest");
-		String req = getRequestJson();
+		return recursiveSearch(1, headers);
+	}
+
+	private List<AbstractCarListing> recursiveSearch(int page, Map<String, String> headers) throws IOException {
+		String req = getRequestJson(page);
+		System.err.print("GET Page " + page);
 		String response = RequestUtils.postString("https://www.raccars.co.uk/search/car/results", req,
 				"application/json", headers);
 		JsonObject obj = DEFAULT_PARSER.fromJson(response, JsonObject.class);
+		int lastPage = obj.getAsJsonObject("Pagination").get("LastPage").getAsInt();
+		System.err.println(" of " + lastPage);
 		JsonArray arr = obj.getAsJsonArray("Results");
 		Iterator<JsonElement> e = arr.iterator();
 		// Remove non "UsedVehicleResult" entries.
@@ -50,10 +59,21 @@ public class RACSearcher implements ICarSearcher {
 			if (el.isJsonObject() && !"UsedVehicleResult".equals(el.getAsJsonObject().get("ObjectType").getAsString()))
 				e.remove();
 		}
-
-		RACCarListing[] lst = DEFAULT_PARSER.fromJson(arr, RACCarListing[].class);
-		Arrays.stream(lst).forEach(a -> a.setSearcher(this));
-		return Arrays.asList(lst);
+		LinkedList<AbstractCarListing> lst = new LinkedList<>();
+		RACCarListing[] res = DEFAULT_PARSER.fromJson(arr, RACCarListing[].class);
+		Arrays.stream(res).forEach(a -> {
+			a.setSearcher(this);
+			lst.add(a);
+		});
+		if (page < lastPage) {
+			try {
+				Thread.sleep(sleepBetweenRequests);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			lst.addAll(recursiveSearch(page + 1, headers));
+		}
+		return lst;
 	}
 
 	@Override
@@ -61,7 +81,7 @@ public class RACSearcher implements ICarSearcher {
 		return "🛺 RAC Crawler";
 	}
 
-	private String getRequestJson() {
+	private String getRequestJson(int page) {
 		//@formatter:off
 		return "{"
 				+ "  \"searchPanelParameters\": {"
@@ -122,7 +142,7 @@ public class RACSearcher implements ICarSearcher {
 				+ "    \"TotalRecords\": 14,"
 				+ "    \"FirstRecord\": 1,"
 				+ "    \"LastRecord\": 12,"
-				+ "    \"CurrentPage\": 1,"
+				+ "    \"CurrentPage\": \""+page+"\","
 				+ "    \"LastPage\": 2,"
 				+ "    \"PageSize\": 12,"
 				+ "    \"PageLinksPerPage\": 5,"

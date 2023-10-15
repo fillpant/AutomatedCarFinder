@@ -8,16 +8,18 @@ public class MotorsCoUkConfig implements ISearcherConfiguration {
 	private final int minYear;
 	private final int maxYear;
 	private final int maxPrice;
+	private final long sleepBetweenReqs;
 	private final String referencePostcode;
 
-	public MotorsCoUkConfig(String make, String model, int minYear, int maxYear, int maxPrice,
-			String referencePostcode) {
+	public MotorsCoUkConfig(String make, String model, int minYear, int maxYear, int maxPrice, String referencePostcode,
+			long sleepBetweenReqs) {
 		this.make = make;
 		this.model = model;
 		this.minYear = minYear;
 		this.maxYear = maxYear;
 		this.maxPrice = maxPrice;
 		this.referencePostcode = referencePostcode;
+		this.sleepBetweenReqs = sleepBetweenReqs;
 	}
 
 	public String getMake() {
@@ -42,6 +44,10 @@ public class MotorsCoUkConfig implements ISearcherConfiguration {
 
 	public String getReferencePostcode() {
 		return referencePostcode;
+	}
+
+	public long getSleepBetweenReqs() {
+		return sleepBetweenReqs;
 	}
 
 	@Override

@@ -7,11 +7,13 @@ public class CarGurusConfig implements ISearcherConfiguration {
 	private final int minYear;
 	private final int maxPrice;
 	private final String referencePostcode;
+	private final long sleepBetweenRequests;
 
-	public CarGurusConfig(int minYear, int maxPrice, String referencePostcode) {
+	public CarGurusConfig(int minYear, int maxPrice, String referencePostcode, long sleepBetweenRequests) {
 		this.minYear = minYear;
 		this.maxPrice = maxPrice;
 		this.referencePostcode = referencePostcode;
+		this.sleepBetweenRequests = sleepBetweenRequests;
 	}
 
 	public int getMinYear() {
@@ -24,6 +26,10 @@ public class CarGurusConfig implements ISearcherConfiguration {
 
 	public String getReferencePostcode() {
 		return referencePostcode;
+	}
+
+	public long getSleepBetweenRequests() {
+		return sleepBetweenRequests;
 	}
 
 	@Override

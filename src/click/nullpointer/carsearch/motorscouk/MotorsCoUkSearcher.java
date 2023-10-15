@@ -8,11 +8,12 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
@@ -57,6 +58,7 @@ public class MotorsCoUkSearcher implements ICarSearcher {
 	private final int maxYear;
 	private final int maxPrice;
 	private final String referencePostcode;
+	private final long sleepBetweenReqs;
 
 	public MotorsCoUkSearcher(MotorsCoUkConfig conf) {
 		this.make = conf.getMake();
@@ -65,13 +67,23 @@ public class MotorsCoUkSearcher implements ICarSearcher {
 		this.maxYear = conf.getMaxYear();
 		this.maxPrice = conf.getMaxPrice();
 		this.referencePostcode = conf.getReferencePostcode();
+		this.sleepBetweenReqs = conf.getSleepBetweenReqs();
 	}
 
 	@Override
 	public Collection<AbstractCarListing> searchForListings() throws IOException {
-		String dat = sendPostRequest("https://www.motors.co.uk/search/car/results", getRequestPayload(),
+		return recursiveSearch(1);
+	}
+
+	private List<AbstractCarListing> recursiveSearch(int page) throws IOException {
+		String dat = sendPostRequest("https://www.motors.co.uk/search/car/results", getRequestPayload(page),
 				"application/json", STATIC_REQUEST_HEADERS);
 		JsonObject obj = COMMON_GSON.fromJson(dat, JsonObject.class);
+		System.err.print("GET Page " + page);
+//		int currPage = obj.getAsJsonObject("Pagination").get("CurrentPage").getAsInt();
+		int lastPage = obj.getAsJsonObject("Pagination").get("LastPage").getAsInt();
+		System.err.println(" of " + lastPage);
+
 		JsonArray arr = obj.getAsJsonArray("Results");
 		Iterator<JsonElement> i = arr.iterator();
 		while (i.hasNext()) {
@@ -82,10 +94,22 @@ public class MotorsCoUkSearcher implements ICarSearcher {
 			}
 		}
 
+		List<AbstractCarListing> lst = new LinkedList<>();
 		MotorsCoUkCarListing[] listings = COMMON_GSON.fromJson(arr, MotorsCoUkCarListing[].class);
-		Arrays.stream(listings).forEach(a -> a.setSearcher(this));
-		System.err.println("GOT " + listings.length + " listings");
-		return new ArrayList<>(Arrays.asList(listings));
+		Arrays.stream(listings).forEach(a -> {
+			a.setSearcher(this);
+			lst.add(a);
+		});
+//		System.err.println("GOT " + listings.length + " listings");
+		if (lastPage > page) {
+			try {
+				Thread.sleep(sleepBetweenReqs);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			lst.addAll(recursiveSearch(page + 1));
+		}
+		return lst;
 	}
 
 	@Override
@@ -93,9 +117,11 @@ public class MotorsCoUkSearcher implements ICarSearcher {
 		return "🛵 Motors.co.uk Crawler";
 	}
 
-	private String getRequestPayload() {
+	private String getRequestPayload(int page) {
 		return "{\"isNewSearch\":true,"//
-				+ "\"pagination\":{\"TotalPages\":10,\"BasicResultCount\":100,\"TotalRecords\":100,\"FirstRecord\":1,\"LastRecord\":100,\"CurrentPage\":1,\"LastPage\":100,\"PageSize\":21,\"PageLinksPerPage\":5,\"PageLinks\":[{\"Name\":\"1\",\"Link\":\"1\"}],\"FirstPageLink\":{\"Name\":\"1\",\"Link\":\"1\"},\"Level\":null,\"Variants\":0},"
+				+ "\"pagination\":{\"TotalPages\":10,\"BasicResultCount\":100,\"TotalRecords\":100,\"FirstRecord\":1,\"LastRecord\":100,\"CurrentPage\":\""
+				+ page
+				+ "\",\"LastPage\":100,\"PageSize\":21,\"PageLinksPerPage\":5,\"PageLinks\":[{\"Name\":\"1\",\"Link\":\"1\"}],\"FirstPageLink\":{\"Name\":\"1\",\"Link\":\"1\"},\"Level\":null,\"Variants\":0},"
 				+ "\"searchPanelParameters\":{"//
 				+ "\"Doors\":[],"//
 				+ "\"Seats\":[],"//

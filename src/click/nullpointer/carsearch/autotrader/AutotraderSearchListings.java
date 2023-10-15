@@ -1,5 +1,6 @@
 package click.nullpointer.carsearch.autotrader;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -9,6 +10,8 @@ import java.util.Optional;
 import com.google.gson.annotations.SerializedName;
 
 import click.nullpointer.carsearch.model.AbstractCarListing;
+import click.nullpointer.carsearch.model.ListingDetail;
+import click.nullpointer.carsearch.model.ListingDetail.StandardListingDetails;
 
 public class AutotraderSearchListings extends AbstractCarListing {
 
@@ -16,6 +19,7 @@ public class AutotraderSearchListings extends AbstractCarListing {
 	public String type;// We're not concerned with GPT_LISTING, just NATURAL_LISTING
 	public String title;
 	public String subTitle;
+	public String attentionGrabber;
 	public String price;
 	public String bodyType;// SUV etc.
 	public int distance;// distance of car from request postcode
@@ -113,24 +117,53 @@ public class AutotraderSearchListings extends AbstractCarListing {
 	}
 
 	@Override
-	public String toNotificationText() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(title).append('\n');
-		if (subTitle != null && !subTitle.trim().isEmpty())
-			sb.append(subTitle).append('\n');
-		sb.append("💰 " + price);
-		sb.append('\n');
-		int miles = tryParseMileage().orElse(-1);
-		int km = (int) (miles * 1.609344);
-		sb.append("📏 " + (miles == -1 ? mileageText : (String.format("%,d miles (%,d km)", miles, km))));
-		sb.append('\n');
-		sb.append("📖 Year " + (tryParseYear().isPresent() ? tryParseYear().get() : yearAndPlateText)).append('\n');
+	public List<ListingDetail<?>> getDetails() {
+		List<ListingDetail<?>> details = new ArrayList<>();
+		details.add(StandardListingDetails.title(title));
+		details.add(StandardListingDetails.subtitle(subTitle));
+		details.add(StandardListingDetails.price(getPrice()));
+		if (tryParseMileage().isPresent())
+			details.add(StandardListingDetails.mileage(tryParseMileage().get()));
+		else
+			details.add(new ListingDetail<>("Mileage", mileageText, f -> f));
+		if (tryParseYear().isPresent())
+			details.add(StandardListingDetails.year(tryParseYear().get()));
+		else
+			details.add(new ListingDetail<>("Year", yearAndPlateText, f -> f));
 		if (tryGetTransmission().isPresent())
-			sb.append("⚙️ " + tryGetTransmission().get()).append('\n');
+			details.add(StandardListingDetails.transmission(tryGetTransmission().get()));
 		if (tryExtractOwnerCnt().isPresent())
-			sb.append("🧍 " + tryExtractOwnerCnt().get()).append(" owners").append('\n');
-		sb.append("📸 " + numberOfImages);
-		return sb.toString();
+			details.add(StandardListingDetails.prevKeepers(tryExtractOwnerCnt().get()));
+		details.add(StandardListingDetails.distance(distance));
+		if (description != null)
+			details.add(StandardListingDetails.description(description));
+		details.add(StandardListingDetails.location(location));
+
+		if (attentionGrabber != null)
+			details.add(StandardListingDetails.shortDescription(attentionGrabber));
+		details.add(StandardListingDetails.photoCount(numberOfImages));
+		return details;
 	}
+//
+//	@Override
+//	public String toNotificationText() {
+//		StringBuilder sb = new StringBuilder();
+//		sb.append(title).append('\n');
+//		if (subTitle != null && !subTitle.trim().isEmpty())
+//			sb.append(subTitle).append('\n');
+//		sb.append("💰 " + price);
+//		sb.append('\n');
+//		int miles = tryParseMileage().orElse(-1);
+//		int km = (int) (miles * 1.609344);
+//		sb.append("📏 " + (miles == -1 ? mileageText : (String.format("%,d miles (%,d km)", miles, km))));
+//		sb.append('\n');
+//		sb.append("📖 Year " + (tryParseYear().isPresent() ? tryParseYear().get() : yearAndPlateText)).append('\n');
+//		if (tryGetTransmission().isPresent())
+//			sb.append("⚙️ " + tryGetTransmission().get()).append('\n');
+//		if (tryExtractOwnerCnt().isPresent())
+//			sb.append("🧍 " + tryExtractOwnerCnt().get()).append(" owners").append('\n');
+//		sb.append("📸 " + numberOfImages);
+//		return sb.toString();
+//	}
 
 }

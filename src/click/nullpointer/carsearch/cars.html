@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Gallery</title>
+    <title>🚘 Cars!</title>
+    <!-- Favicon -->
+	<link rel="icon" type="image/png" href="https://cdn1.iconfinder.com/data/icons/lottery-5/64/car_card_gambling_lottery_money-256.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://cdn1.iconfinder.com/data/icons/lottery-5/64/car_card_gambling_lottery_money-144.png"><!-- iPad Retina-->
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://cdn1.iconfinder.com/data/icons/lottery-5/64/car_card_gambling_lottery_money-114.png"><!--iPhone Retina -->
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://cdn1.iconfinder.com/data/icons/lottery-5/64/car_card_gambling_lottery_money-72.png"><!-- iPad 1 e 2 -->
+	<link rel="apple-touch-icon-precomposed" href="https://cdn1.iconfinder.com/data/icons/lottery-5/64/car_card_gambling_lottery_money-57.png"><!-- iPhone, iPod e Android 2.2+ -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #333; /* Dark background color */
             color: #fff; /* Text color */
         }
+        .plain-link {
+		  background-color:none;
+          color: #fff;
+		 }
     </style>   
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -25,7 +35,8 @@
 		<center><h5>Results: {{listingCount}}</h5></center>
 		<hr>
 		{{#each listings}}
-			<div class="row mb-3">
+			<div class="card mb-3 bg-dark text-white">
+				<div class="row g-0">
 	            <div class="col-md-4">
 					{{#if (eq imageCnt 0)}}
 	            		<img data-src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png" class="d-block w-100 lazyload">
@@ -54,9 +65,29 @@
 	               </div>
 					{{/if}}
 	            </div>
-				<div class="col-md-6">
-	            	<a href="{{listingUrl}}" target="_blank">View Listing</a>
-					<p style="white-space: pre-wrap">{{shortDescription}}</p>
+				<div class="col-md-8">
+	                <div class="card-body">
+	                    <h5 class="card-title"><a class="plain-link" href="{{listingUrl}}" target="_blank">{{_title}}</a></h5>
+	                    <h6 class="card-subtitle mb-2 text-muted">{{_subtitle}} {{#if firstSeen}}{{#unless (eq (daysSinceMs fistSeen) 0)}} <span class="badge rounded-pill bg-success">Seen {{daysSinceMs firstSeen}} days ago.</span>{{/unless}}{{/if}}</h6>
+	                    <div class="card-text">
+	                    	{{#each _shortDetails}}
+	                    	{{#if @index}}<br>{{/if}}
+	                    	{{emoji}} {{detailType}}: {{value}}
+	                    	{{/each}}
+							{{#if details}}
+	                    	<div class="full-description d-none">
+	                    		{{#each details}}
+								{{#if @index}}<br>{{/if}}
+		                    	{{emoji}} {{detailType}}: {{value}}
+		                    	{{/each}}
+	                    	</div>
+	                    	{{/if}}
+	                   	</div>
+	                   	{{#if details}}
+	                   	<a href="#" class="card-link">Expand</a>
+	                   	{{/if}}
+	                    <div class="full-description d-none">{{shortDescription}}</div>
+	                </div>
 				</div>
 	         </div>
 	      </div>
@@ -65,19 +96,76 @@
 </script>
 
 <script>
+
+
+
 	async function applyTemplate() {
+		const maxDetailsPerCard = 9;
 		Handlebars.registerHelper('eq', function (a,b) {
 		  return a==b;
+		});
+		Handlebars.registerHelper('daysSinceMs', function (a) {
+		  return Math.round((new Date() - new Date(a)) / (1000 * 60 * 60 * 24));
 		});
 		var templ = Handlebars.compile(document.getElementById("listingTemplate").innerHTML);
 		const url = "./cars.json";
 		const response = await fetch(url);
 		const jsn = await response.json();
-		console.log(jsn);
+
+		jsn.results.forEach(crawler => {
+			crawler.listings.sort((a,b)=>a.price-b.price);
+			crawler.listings.forEach(l => {
+				//Just because, delete shortDescription (save up memory, we dont need it)
+				delete l.shortDescription;
+
+				//Find the "title" and "description" listing items, and extract them
+				//into each listing object as an attribute
+				l.details.forEach(d => {
+					if (d.detailType === "Title") {
+						l._title = d.value;
+					} else if (d.detailType === "Subtitle") {
+						l._subtitle = d.value;
+					}
+				});
+				//Remove title/subtitle details.
+				l.details = l.details.filter(d => !(d.detailType === "Title" || d.detailType === "Subtitle"))
+				//Make the listing have two arrays: The short, and the details which contains what's not in short.
+				if (l.length <= maxDetailsPerCard) {
+					l._shortDetails = l.details;
+					delete l.details; //No point keeping it, it would be empty.
+				} else {
+					l._shortDetails = l.details.slice(0, maxDetailsPerCard);
+					l.details = l.details.slice(maxDetailsPerCard);
+				}
+			}); 
+		});
+
+
+		console.debug(jsn);
 		var rendered = templ(jsn);
 		document.getElementById("listings").innerHTML=rendered;
+		registerExpandForCards();
 	}
+	
+	function registerExpandForCards() {
+		document.querySelectorAll(".card-link").forEach(a => {
+	        a.addEventListener("click", function(e) {
+	            e.preventDefault();
+	            const fullDescription = this.closest(".card").querySelector(".full-description");
+	            const cardText = this.closest(".card").querySelector(".card-text");
+	            fullDescription.classList.toggle("d-none");
+	            if (fullDescription.classList.contains("d-none")) {
+	                this.textContent = "Expand";
+	            } else {
+	                this.textContent = "Collapse";
+	            }
+	        });
+	    });
+	}
+
 	applyTemplate();
+
+	
 </script>
 
 </body>

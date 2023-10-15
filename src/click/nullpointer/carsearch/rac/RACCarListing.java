@@ -1,13 +1,19 @@
 package click.nullpointer.carsearch.rac;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import click.nullpointer.carsearch.model.AbstractCarListing;
+import click.nullpointer.carsearch.model.ListingDetail;
+import click.nullpointer.carsearch.model.ListingDetail.StandardListingDetails;
 
 public class RACCarListing extends AbstractCarListing {
+	private static final DateTimeFormatter OUTPUT_DATES = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 	private long vehicleId;
 	private int registeredKeepers;
@@ -81,34 +87,62 @@ public class RACCarListing extends AbstractCarListing {
 	}
 
 	@Override
-	public String toNotificationText() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(cropToLength(getTitle(), 42)).append('\n');
-		sb.append(cropToLength(getShortFeaturesSummary(), 42)).append('\n');
-		sb.append("💰 " + String.format("£%,.2f", getPrice()));
-		if (getOriginalPrice() > 0 && getOriginalPrice() != getPrice())
-			sb.append(String.format(" (was £%,.2f)", getOriginalPrice()));
-		sb.append('\n');
-		int km = (int) (getMileage() * 1.609344);
-		sb.append("📏 " + String.format("%,d miles (%,d km)", getMileage(), km)).append('\n');
-		sb.append("📖 Year " + getRegistrationYear());
-		sb.append(" (💸 Tax " + getRoadTaxCost() + ")").append('\n');
+	public List<ListingDetail<?>> getDetails() {
+		List<ListingDetail<?>> details = new ArrayList<>();
+		details.add(StandardListingDetails.title(title));
+		details.add(StandardListingDetails.subtitle(shortFeaturesSummary));
+		if (price != originalPrice && originalPrice > 0)
+			details.add(StandardListingDetails.priceDifference(price, originalPrice));
+		else
+			details.add(StandardListingDetails.price(price));
+		details.add(StandardListingDetails.mileage(mileage));
+		details.add(StandardListingDetails.tax(roadTaxCost));
+		details.add(StandardListingDetails.mot(motExpiry.format(OUTPUT_DATES)));
+		details.add(StandardListingDetails.year(registrationYear));
+		details.add(StandardListingDetails.distance(distance));
+		details.add(StandardListingDetails.prevKeepers(getRegisteredKeepers()));
+		details.add(StandardListingDetails.colour(colour));
+		details.add(StandardListingDetails.photoCount(getImageURLs().length));
+		details.add(StandardListingDetails.transmission(getTransmission()));
+		details.add(StandardListingDetails.shortDescription(getShortDescription()));
+		details.add(StandardListingDetails.description(getDescription()));
 		if (!getHistoryCheckDescription().contains("Passed"))
-			sb.append("📜 " + getHistoryCheckDescription()).append('\n');
-		sb.append("🧍 " + getRegisteredKeepers()).append(" owners").append('\n');
-		sb.append("⚙️ " + getTransmission());
-		sb.append(", 🎨 " + getColour()).append('\n');
-		sb.append("📍 Distance: " + getDistance() + " miles").append('\n');
-		sb.append("📰 " + getShortDescription());
-		return sb.toString();
+			details.add(new ListingDetail<>("History", historyCheckDescription, f -> f, "📜"));
+		details.add(new ListingDetail<>("Ex-Demo", exDemo ? "Yes" : "No", f -> f, "👀"));
+		details.add(new ListingDetail<>("Ex-Fleet", exFleet ? "Yes" : "No", f -> f, "🚛"));
+		details.add(new ListingDetail<>("Low Mileage", isLowMileage ? "Yes" : "No", f -> f, "💡"));
+		return details;
 	}
 
-	private String cropToLength(String s, int chars) {
-		if (s.length() > chars - 3) {
-			return s.substring(0, chars) + "...";
-		}
-		return s;
-	}
+//	@Override
+//	public String toNotificationText() {
+//		StringBuilder sb = new StringBuilder();
+//		sb.append(cropToLength(getTitle(), 42)).append('\n');
+//		sb.append(cropToLength(getShortFeaturesSummary(), 42)).append('\n');
+//		sb.append("💰 " + String.format("£%,.2f", getPrice()));
+//		if (getOriginalPrice() > 0 && getOriginalPrice() != getPrice())
+//			sb.append(String.format(" (was £%,.2f)", getOriginalPrice()));
+//		sb.append('\n');
+//		int km = (int) (getMileage() * 1.609344);
+//		sb.append("📏 " + String.format("%,d miles (%,d km)", getMileage(), km)).append('\n');
+//		sb.append("📖 Year " + getRegistrationYear());
+//		sb.append(" (💸 Tax " + getRoadTaxCost() + ")").append('\n');
+//		if (!getHistoryCheckDescription().contains("Passed"))
+//			sb.append("📜 " + getHistoryCheckDescription()).append('\n');
+//		sb.append("🧍 " + getRegisteredKeepers()).append(" owners").append('\n');
+//		sb.append("⚙️ " + getTransmission());
+//		sb.append(", 🎨 " + getColour()).append('\n');
+//		sb.append("📍 Distance: " + getDistance() + " miles").append('\n');
+//		sb.append("📰 " + getShortDescription());
+//		return sb.toString();
+//	}
+
+//	private String cropToLength(String s, int chars) {
+//		if (s.length() > chars - 3) {
+//			return s.substring(0, chars) + "...";
+//		}
+//		return s;
+//	}
 
 	@Override
 	public Collection<String> getPictureURLs() {

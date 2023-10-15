@@ -16,22 +16,31 @@ import click.nullpointer.carsearch.model.RequestUtils;
 public class CarGurusSearcher implements ICarSearcher {
 
 	private static final Gson COMMON_GSON = new Gson();
-	private static final int MAX_PAGES = 10;
+	private static final int MAX_PAGES = 25;
 	private static final int RESULTS_PER_PAGE = 15;
 	private final int minYear;
 	private final String referencePostcode;
 	private final int maxPrice;
+	private final long sleepBetweenRequests;
 
 	public CarGurusSearcher(CarGurusConfig conf) throws IOException {
 		this.minYear = conf.getMinYear();
 		this.referencePostcode = URLEncoder.encode(conf.getReferencePostcode(), "UTF-8");
 		this.maxPrice = conf.getMaxPrice();
+		this.sleepBetweenRequests = conf.getSleepBetweenRequests();
 	}
 
 	@Override
 	public Collection<AbstractCarListing> searchForListings() throws IOException {
 		List<AbstractCarListing> listings = new ArrayList<>();
 		for (int i = 0; i < MAX_PAGES; ++i) {
+			if (i > 0) {
+				try {
+					Thread.sleep(sleepBetweenRequests);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 			String request = getPage(i);
 			String json = RequestUtils.get(request, RequestUtils.STATIC_REQUEST_HEADERS);
 			if (!json.trim().isEmpty() && json.trim().equalsIgnoreCase("null"))

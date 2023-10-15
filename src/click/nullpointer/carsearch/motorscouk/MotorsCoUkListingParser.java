@@ -34,6 +34,7 @@ public class MotorsCoUkListingParser implements JsonDeserializer<MotorsCoUkCarLi
 			String title = ob.get("Title").getAsString();
 			int mileage = ob.get("MileageInt").getAsInt();
 			String fuelType = ob.get("FuelType").getAsString();
+			String transmission = ob.get("Transmission").getAsString();
 			String[] images;
 			if (ob.has("FeaturedAdvertImages") && !ob.get("FeaturedAdvertImages").isJsonNull()) {
 				images = new String[ob.getAsJsonArray("FeaturedAdvertImages").size()];
@@ -49,7 +50,7 @@ public class MotorsCoUkListingParser implements JsonDeserializer<MotorsCoUkCarLi
 
 			return new MotorsCoUkCarListing(id, price, listingURL, bodyType, engineLitres, distance, isReduced,
 					isExDemo, isLowMileage, colour, originalPrice, imageCnt, isPriceExcludingVat, registrationYear,
-					sold, varian, model, title, mileage, fuelType, images);
+					sold, varian, model, title, mileage, transmission, fuelType, images);
 		} catch (Exception e) {
 			System.err.println("Failed to parse Motors.co.uk listing! -- Ignoring.");
 			e.printStackTrace();
